@@ -200,41 +200,64 @@ export default function Home() {
   const setField = (k) => (e) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  async function submit(e) {
-    e.preventDefault();
-    setState({ loading: true, error: "", done: false });
 
-    try {
-      const res = await fetch(`/api/orders`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          pkg,
+async function submit(e) {
+  e.preventDefault();
+
+  setState({
+    loading: true,
+    error: "",
+    done: false,
+  });
+
+const res = await fetch(
+  `${process.env.NEXT_PUBLIC_API_URL}/api/orders`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      customer: {
+        name: form.name,
+        phone: form.phone,
+      },
+
+      items: [
+        {
+          productId: "synthetic-leather-zipper-socks",
+          name: PRODUCT,
+          price: p.price,
+          quantity: p.pairs,
           sizes: sizes.slice(0, p.pairs),
-        }),
-      });
+        },
+      ],
 
-      const data = await res.json();
+      shippingAddress: {
+        address: form.address,
+        area: form.area,
+      },
 
-      if (!res.ok) {
-        return setState({
-          loading: false,
-          error: data.error || "সমস্যা হয়েছে",
-          done: false,
-        });
-      }
-
-      setState({ loading: false, error: "", done: true });
-      // window.fbq?.("track", "Purchase", { value: total, currency: "BDT" });
-    } catch {
-      setState({
-        loading: false,
-        error: "ইন্টারনেট সংযোগ চেক করে আবার চেষ্টা করুন",
-        done: false,
-      });
-    }
+      shippingCharge: delivery,
+      paymentMethod: "COD",
+    }),
   }
+);
+
+const data = await res.json();
+
+if (!res.ok) {
+  throw new Error(data.message || "অর্ডার করতে সমস্যা হয়েছে");
+}
+
+setState({
+  loading: false,
+  error: "",
+  done: true,
+});
+
+console.log("Order created:", data.data);
+}
 
   const inputCls =
     "w-full rounded-xl border border-[#e7ded3] bg-white px-4 py-3.5 text-base text-[#191919] outline-none transition placeholder:text-gray-400 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10";
