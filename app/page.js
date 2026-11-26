@@ -11,10 +11,10 @@ const PHONE = "01XXXXXXXXX";
 const WHATSAPP = "8801XXXXXXXXX";
 
 const GALLERY = [
-  ["/images/product.jpeg", "রাতের ইবাদতে পা থাকুক উষ্ণ"],
-  ["/images/product.jpeg", "পাশের চেইন — পরা ও খোলা সহজ"],
-  ["/images/product.jpeg", "সফরে লোফারের সাথে মানানসই"],
-  ["/images/product.jpeg", "মসজিদে যাওয়ার পথে আরামের সঙ্গী"],
+  ["/images/muja.jpeg", "রাতের ইবাদতে পা থাকুক উষ্ণ"],
+  ["/images/parent1.png", "পাশের চেইন — পরা ও খোলা সহজ"],
+  ["/images/product.png", "সফরে লোফারের সাথে মানানসই"],
+  ["/images/product2.png", "মসজিদে যাওয়ার পথে আরামের সঙ্গী"],
 ];
 
 const BENEFITS = [
@@ -415,7 +415,7 @@ console.log("Order created:", data.data);
 
               <div className="relative overflow-hidden rounded-[2.5rem] border border-white/70 bg-[#f3e8dc] p-3 shadow-2xl shadow-orange-900/10">
                 <img
-                  src="/images/product.jpeg"
+                  src="/images/parent1.png"
                   alt={PRODUCT}
                   className="aspect-square w-full rounded-[2rem] object-cover"
                 />
@@ -570,13 +570,13 @@ console.log("Order created:", data.data);
 
           <div className="grid grid-cols-2 gap-4">
             <img
-              src="/images/parents.png"
+              src="/images/parent2.png"
               alt="মায়ের রাতের ইবাদতে"
               loading="lazy"
               className="h-72 scale-110 w-80 rounded-[2rem] object-center"
             />
             <img
-              src="/images/parents2.png"
+              src="/images/parent2.png"
               alt="বাবার মসজিদে যাওয়ার পথে"
               loading="lazy"
               className="mt-16 h-72 scale-110 w-80 rounded-[2rem] object-center"
