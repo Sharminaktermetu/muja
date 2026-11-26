@@ -1,1 +1,32 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+:root {
+  --background: #090909;
+  --foreground: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #090909;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+::selection {
+  background: #ff7a00;
+  color: #000;
+}
